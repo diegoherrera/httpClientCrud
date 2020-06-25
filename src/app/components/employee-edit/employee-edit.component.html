@@ -1,0 +1,63 @@
+ <div class="row justify-content-center">
+   <div class="col-md-4 register-employee">
+    
+     <div class="card card-outline-secondary">
+       <div class="card-header">
+         <h3 class="mb-0">Editar Empleado</h3>
+       </div>
+       <div class="card-body">
+         <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+           <div class="form-group">
+             <label for="inputName">Nombre</label>
+             <input class="form-control" type="text" formControlName="name">
+             <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
+               El nombre es requerido.
+             </div>
+           </div>
+           <div class="form-group">
+             <label for="inputEmail3">Email</label>
+             <input class="form-control" type="text" formControlName="email">
+             
+             <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
+               Ingresa tu  email.
+             </div>
+             <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
+               Ingresa un email valido.
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label for="inputPassword3">Designacion</label>
+             <select class="custom-select form-control" (change)="updateProfile($event.target.value)"
+               formControlName="designation">
+               <option value="">Selecciona...</option>
+               <option *ngFor="let employeeProfile of EmployeeProfile" value="{{employeeProfile}}">{{employeeProfile}}
+               </option>
+             </select>
+             
+             <div class="invalid-feedback" *ngIf="submitted && myForm.designation.errors?.required">
+               Debes Seleccionar una opcion.
+             </div>
+           </div>
+
+           <div class="form-group">
+             <label for="inputVerify3">Mobile No</label>
+             <input class="form-control" type="text" formControlName="phoneNumber">
+            
+             <div class="invalid-feedback" *ngIf="submitted && myForm.phoneNumber.errors?.required">
+               Enter your phone number.
+             </div>
+             <div class="invalid-feedback" *ngIf="submitted && myForm.phoneNumber.errors?.pattern">
+               Enter Numbers Only
+             </div>
+           </div>
+
+           <div class="form-group">
+             <button class="btn btn-success btn-lg btn-block" type="submit">Actualizar Datos</button>
+           </div>
+         </form>
+       </div>
+     </div>
+   </div>
+ </div>

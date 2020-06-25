@@ -1,0 +1,35 @@
+<div class="container">
+  <!-- No data message -->
+  <p *ngIf="Employee.length <= 0" class="no-data text-center">No hay Empleados disponibles por servicio </p>
+
+  <!-- Employee list -->
+  <table class="table table-striped" *ngIf="Employee.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">Empleado ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Designacion</th>
+        <th scope="col">Telefono No</th>
+        <th scope="col center">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of Employee; let i = index">
+        <th scope="row">{{employee.id}}</th>
+        <td>{{employee.name}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.designation}}</td>
+        <td>{{employee.phoneNumber}}</td>
+        <td class="text-center edit-block">
+          <span class="edit" [routerLink]="['/edit-employee/', employee.id]">
+            <button type="button" class="btn btn-success btn-sm">Editar</button>
+          </span>
+          <span class="delete" (click)="removeEmployee(employee, i)">
+            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
